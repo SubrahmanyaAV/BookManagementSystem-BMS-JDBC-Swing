@@ -1,1 +1,2 @@
-# Book-Management-System-BMS
+# Book Management System BMS using JDBC and Swing
+     
