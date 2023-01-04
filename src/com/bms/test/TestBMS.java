@@ -150,16 +150,22 @@ public class TestBMS {
 				System.out.println("Please enter the student usn to issue book");
 				usn = sc.nextLine();
 				
-				System.out.println("Enter issue date(yyyy-MM-dd)");
+/*				System.out.println("Enter issue date(yyyy-MM-dd)");
 				String issueDate = sc.nextLine();
 				
-				try {
-					 iDate  = new SimpleDateFormat("yyyy-MM-dd").parse(issueDate);
+				try 
+				{
+				  iDate  = new SimpleDateFormat("yyyy-MM-dd").parse(issueDate);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 				System.out.println(issueDate);
-			
+*/			
+
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+			    Date date = new Date();  
+			    System.out.println(formatter.format(date));  
+				
 				System.out.println("Please enter the book ISBN to issue");
 				int searchISBN = sc.nextInt(); sc.nextLine();
 				
@@ -173,7 +179,7 @@ public class TestBMS {
 			    	System.out.println(result4.getISBN() +" ==" + result4.getTitle()+ " ==" + result4.getAuthor());
 			    }
 				
-				dao1.issueBook(new Student(usn), iDate, searchISBN);
+				dao1.issueBook(new Student(usn), date, searchISBN);
 			    System.out.println("Book issued");
 				
 				break;

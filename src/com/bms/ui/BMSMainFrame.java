@@ -45,8 +45,6 @@ public class BMSMainFrame extends JFrame{
 			}
 		});
 
-
-
 	}
 
 }
