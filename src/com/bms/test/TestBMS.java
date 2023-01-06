@@ -1,5 +1,4 @@
 package com.bms.test;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -146,11 +145,12 @@ public class TestBMS {
 				break;
 				
 			case"7":
-				Date iDate = null;
+				
 				System.out.println("Please enter the student usn to issue book");
 				usn = sc.nextLine();
 				
-/*				System.out.println("Enter issue date(yyyy-MM-dd)");
+/*				Date iDate = null;
+				System.out.println("Enter issue date(yyyy-MM-dd)");
 				String issueDate = sc.nextLine();
 				
 				try 
@@ -161,13 +161,15 @@ public class TestBMS {
 				}
 				System.out.println(issueDate);
 */			
-
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 			    Date date = new Date();  
 			    System.out.println(formatter.format(date));  
 				
-				System.out.println("Please enter the book ISBN to issue");
-				int searchISBN = sc.nextInt(); sc.nextLine();
+				try {
+					System.out.println("Please enter the book ISBN to issue");
+					int searchISBN = sc.nextInt(); sc.nextLine();
+					
+				    sc.nextLine();
 				
 			    Book result4 = dao.getBook(searchISBN);
 			    if(result4 == null)
@@ -182,6 +184,10 @@ public class TestBMS {
 				dao1.issueBook(new Student(usn), date, searchISBN);
 			    System.out.println("Book issued");
 				
+				} catch (InputMismatchException e) {
+					System.out.println("Invalid input");
+					sc.nextLine();
+				}	
 				break;
 			
 			case"8":
@@ -199,7 +205,7 @@ public class TestBMS {
 				break;
 			
 			case"9":
-				/*System.out.println("Enter the current date (yyyy-MM-dd)");
+/*				System.out.println("Enter the current date (yyyy-MM-dd)");
 				issueDate = sc.nextLine();
 				//system date should be taken has current date
 				Date rDate = null;
@@ -216,7 +222,6 @@ public class TestBMS {
 				{
 					System.out.println(i1.getName() + " == " + i1.getTitle() + " == " +   i1.getISBN() + " == " + i1.getIssueID());
 				}
-				
 				break;
 			
 			case "10":
