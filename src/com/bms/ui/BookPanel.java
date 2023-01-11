@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +22,9 @@ public class BookPanel extends JPanel{
 	private JLabel lblISBN;
 	private JLabel lblTitle;
 	private JLabel lblCategory;
-	private JLabel lblNoOfBooks;
+/*	final String[] categories = {"Crime/Drama","Textbook","Sci-fi"," Crime","Thriller","Action","Romance","Book"};
+	private JComboBox<String> cbCategory = new JComboBox<String>(categories);
+*/	private JLabel lblNoOfBooks;
 	private JLabel lblAuthorname;
 	private JLabel lblMailID;
 	private JTextField txtISBN;
@@ -60,6 +63,7 @@ public class BookPanel extends JPanel{
 				
 				String strISBN = txtISBN.getText();
 				String strTitle = txtTitle.getText();
+//				String strCategory = cbCategory.getActionCommand();
 				String strCategory = txtCategory.getText();
 				String strNoOfBooks = txtNoOfBooks.getText();
 				String strAuthorname = txtAuthorname.getText();
@@ -112,6 +116,7 @@ public class BookPanel extends JPanel{
 		add(lblTitle);
 		add(txtTitle);
 		add(lblCategory);
+//		add(cbCategory);
 		add(txtCategory);
 		add(lblNoOfBooks);
 		add(txtNoOfBooks);

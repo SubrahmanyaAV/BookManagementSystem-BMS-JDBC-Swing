@@ -17,7 +17,7 @@ public class BookDAO {
 
 	public Vector<Vector<String>> getSearchAuthorData(String authorname)  
 	{
-		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.authorname=?  ";
+		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and a.authorname LIKE ?  ";
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		Vector<String> row = null;
 
@@ -25,7 +25,7 @@ public class BookDAO {
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(1, authorname);
+			ps.setString(1,"%"+authorname+"%");
 
 			ResultSet rs = ps.executeQuery();
 
@@ -49,14 +49,14 @@ public class BookDAO {
 
 	public Vector<Vector<String>> getSearchCategoryData(String category)  
 	{
-		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.category=?  ";
+		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.category LIKE ?  ";
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		Vector<String> row = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, category);
+			ps.setString(1, "%"+category+"%");
 
 			ResultSet rs = ps.executeQuery();
 
@@ -80,14 +80,14 @@ public class BookDAO {
 
 	public Vector<Vector<String>> getSearchTitleData(String title)  
 	{
-		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.title=?  ";
+		String sql ="select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.title LIKE ?  ";
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		Vector<String> row = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, title);
+			ps.setString(1, "%"+title+"%");
 
 			ResultSet rs = ps.executeQuery();
 
@@ -244,13 +244,13 @@ public class BookDAO {
 
 	public Book getBook(int ISBN ) 
 	{
-		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.ISBN=?  ";
+		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.ISBN LIKE ?  ";
 		Book b = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, ISBN);
+			ps.setInt(1,ISBN);
 
 			ResultSet rs = ps.executeQuery();
 			if(rs != null && rs.next())
@@ -266,13 +266,13 @@ public class BookDAO {
 
 	public Book getTitle(String title) 
 	{
-		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.title = ? ";
+		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks , a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.title LIKE ? ";
 		Book b = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, title );
+			ps.setString(1, "%"+title+"%");
 
 			ResultSet rs = ps.executeQuery();
 			if(rs != null && rs.next())
@@ -288,13 +288,13 @@ public class BookDAO {
 
 	public Book getCategory(String category) 
 	{
-		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks, a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.category = ? ";
+		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks, a.authorname , a.mailID from book b ,author a where b.ISBN = a.ISBN and b.category LIKE ? ";
 		Book b = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, category);
+			ps.setString(1,"%"+category +"%");
 
 			ResultSet rs = ps.executeQuery();
 			if(rs != null && rs.next())
@@ -310,13 +310,13 @@ public class BookDAO {
 
 	public Book getAuthorname(String authorname ) 
 	{
-		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks, a.authorname , a.mailID  from book b ,author a where b.ISBN = a.ISBN and a.authorname = ? ";
+		String sql = "select b.ISBN, b.title, b.category, b.NoOfBooks, a.authorname , a.mailID  from book b ,author a where b.ISBN = a.ISBN and a.authorname LIKE ? ";
 		Book b = null;
 
 		try(Connection conn = DBConnectionManager.getConnection())
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, authorname);
+			ps.setString(1, "%"+authorname+"%");
 
 			ResultSet rs = ps.executeQuery();
 			if(rs != null && rs.next())

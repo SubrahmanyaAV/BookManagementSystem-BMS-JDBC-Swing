@@ -91,8 +91,20 @@ public class SearchBooksPanel extends JPanel {
 
 			}
 		});
+		
+		cbCategory.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox)e.getSource();
+		        String category = (String)cb.getSelectedItem();
+		        lblCategory.setText(category);
+				
+			}
+		});
+		
 
-		cbCategory.addItemListener(new ItemListener() {
+/*		cbCategory.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent ie) {
@@ -106,7 +118,7 @@ public class SearchBooksPanel extends JPanel {
 			}
 
 		});
-
+*/
 		btnSearchAuthor = new JButton("Search");
 		btnSearchAuthor.addActionListener(new ActionListener() {
 
@@ -122,9 +134,7 @@ public class SearchBooksPanel extends JPanel {
 					return;
 				}
 				BookDAO dao = new BookDAO();
-				table.setModel(new DefaultTableModel(dao.getSearchTitleData(strAuthor), column));
-
-
+				table.setModel(new DefaultTableModel(dao.getSearchAuthorData(strAuthor), column));
 			}
 		});
 
