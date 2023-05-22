@@ -1,7 +1,5 @@
 # Book Management System BMS using JDBC and Swing
 
-source code - https://github.com/SubrahmanyaAV/BookManagementSystem-BMS-JDBC-Swing.git
-
 Console and GUI based BMS acts as a digital library and provides user the following functionalities
 • Add a Book • Search a Book based on Book Title 
 • Search Books based on Category 
